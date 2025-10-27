@@ -92,7 +92,7 @@ export default function BinomialDistributionSimulator() {
               max="1"
               step="0.1"
               className="btn btn-secondary"
-              style={{ width: '80px' }}
+              style={{ width: '100px' }}
             />
           </div>
           

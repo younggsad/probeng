@@ -88,7 +88,7 @@ export default function NormalDistributionSimulator() {
               onChange={(e) => setStdDev(Math.max(0.1, Number(e.target.value)))}
               min="0.1"
               className="btn btn-secondary"
-              style={{ width: '80px' }}
+              style={{ width: '100px' }}
             />
           </div>
           
