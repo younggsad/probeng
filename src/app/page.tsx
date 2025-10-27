@@ -1,66 +1,99 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from 'next/link'
+
+const topics = [
+  {
+    title: "Бросок монеты",
+    description: "Бернуллиевские испытания, вероятность 0.5, независимые события",
+    href: "/topics/coin-flip",
+    icon: "🎯",
+    color: "#f59e0b",
+    difficulty: "beginner"
+  },
+  {
+    title: "Бросок кубика", 
+    description: "Равномерное распределение, 6 равновероятных исходов, дискретные величины",
+    href: "/topics/dice-roll",
+    icon: "🎲",
+    color: "#10b981",
+    difficulty: "beginner"
+  },
+  {
+    title: "Условная вероятность",
+    description: "Формула Байеса, зависимые события, дерево вероятностей",
+    href: "/topics/conditional-probability", 
+    icon: "🔄",
+    color: "#8b5cf6",
+    difficulty: "intermediate"
+  },
+  {
+    title: "Биномиальное распределение",
+    description: "Формула Бернулли, множественные испытания, бином Ньютона",
+    href: "/topics/binomial-distribution",
+    icon: "📊",
+    color: "#ec4899", 
+    difficulty: "intermediate"
+  },
+  {
+    title: "Комбинаторика",
+    description: "Сочетания, размещения, перестановки в вероятностных задачах",
+    href: "/topics/probability-combinations",
+    icon: "🧩", 
+    color: "#06b6d4",
+    difficulty: "intermediate"
+  },
+  {
+    title: "Нормальное распределение",
+    description: "Кривая Гаусса, правило 3-х сигм, Z-показатели",
+    href: "/topics/normal-distribution",
+    icon: "📈",
+    color: "#3b82f6",
+    difficulty: "advanced"
+  },
+  {
+    title: "Центральная предельная теорема", 
+    description: "Распределение выборочных средних, сходимость к нормальности",
+    href: "/topics/central-limit-theorem",
+    icon: "⚖️",
+    color: "#f97316",
+    difficulty: "advanced"
+  },
+]
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div>
+      <section className="hero">
+        <div className="container">
+          <h1>Теория вероятностей</h1>
+          <p>Интерактивное обучение через визуализацию и эксперименты</p>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <div className="container">
+        <h2 style={{ textAlign: 'center', marginBottom: '1rem' }}>Разделы обучения</h2>
+        <p style={{ textAlign: 'center', color: '#6b7280', marginBottom: '3rem' }}>
+          Выберите тему для изучения теории и проведения экспериментов
+        </p>
+
+        <div className="topics-grid">
+          {topics.map((topic) => (
+            <Link key={topic.href} href={topic.href} className="topic-card">
+              <div className="topic-icon" style={{ color: topic.color }}>
+                {topic.icon}
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                <h2>{topic.title}</h2>
+                <span className={`difficulty-badge difficulty-${topic.difficulty}`}>
+                  {topic.difficulty === 'beginner' ? 'Начальный' : 
+                   topic.difficulty === 'intermediate' ? 'Средний' : 'Продвинутый'}
+                </span>
+              </div>
+              <p>{topic.description}</p>
+            </Link>
+          ))}
         </div>
-      </main>
+
+      </div>
     </div>
-  );
+  )
 }
